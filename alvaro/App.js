@@ -11,6 +11,7 @@
  import { Switch } from 'react-native-paper';
  import { Chip } from 'react-native-paper';
  import { Surface, Text } from 'react-native-paper';
+ import { Provider as PaperProvider } from 'react-native-paper';
  
  import {
    SafeAreaView,
@@ -58,79 +59,35 @@
    );
  };
   
+ const saluda = (text) =>{ return( <Text style ={{color: 'blue',fontSize : 25} } >Hola {text}</Text>) }
+
+ const saluda2 = () => {
+  return(
+    <View>
+  {saluda('caracola') }
+   {saluda('kurasan') }
+  </View>
+  )
+ }
+
  const App = () => {
    const isDarkMode = useColorScheme() === 'dark';
   
    const backgroundStyle = {
      backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
    };
-   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-   return (
-     <SafeAreaView style={backgroundStyle}>
-       <StatusBar
-         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-         backgroundColor={backgroundStyle.backgroundColor}
-       />
-       <ScrollView
-         contentInsetAdjustmentBehavior="automatic"
-         style={backgroundStyle}>
-         <Header />
+   const isMarverl = true;
  
+   return (
 
-         
-         
-         <View
-           style={{
-             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-           }}>
-            <View style={styles.main} >
-            
-          <Text style={{fontSize : 20}}>TextInput(Email)</Text>                   
-         <TextInput label="Email" placeholder="Email: " />
+    <PaperProvider>
+      {
+      isMarverl&&
+      saluda('Spiderman')
+      }
+      {saluda2()}
 
-       
-
-      
-
-           <Text style={styles.buttAlien1} >Button(amb text i icona )</Text>
-           <Button icon="alien" mode="contained" onPress={() => console.log('Pressed')}>
-    Alien
-  </Button>
-  <Button icon="alien" mode="contained" textColor='black' onPress={() => console.log('Pressed')}>
-    Alien
-  </Button>
-  <Button icon="alien" mode="outdated" textColor='purple' onPress={() => console.log('Pressed')}>
-    Alien
-  </Button>
-
-  <Button icon="alien" mode="text" textColor='purple' onPress={() => console.log('Pressed')}>
-    Alien
-  </Button>
-
-           <Text style={styles.main}>Switch Necessites un descans?</Text>
-           
-           <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color = {'red'} />
-
-           <Surface style={styles.main} elevation={4}>
-           <Text style={styles.buttAlien1} >Botó dins un d'component Surface</Text>
-           <Button icon="alien" mode="contained" onPress={() => console.log('Pressed')}>
-    Alien
-  </Button>
-  </Surface>
-           <View style={styles.row}>
-           
-           <Chip icon="web" compact = {true} onPress={() => console.log('Pressed')} style={styles.chip}>Internet</Chip>
-           <Chip icon="wifi" compact = {true} onPress={() => console.log('Pressed')} style={styles.chip}>Wifi</Chip>
-           
-           </View>
-           </View>
-
-
-
-         </View>
-       </ScrollView>
-     </SafeAreaView>
+</PaperProvider>
    );
  };
 
